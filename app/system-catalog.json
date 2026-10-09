@@ -1,0 +1,865 @@
+[
+  {
+    "id": "ps1",
+    "name": "PlayStation 1",
+    "maker": "SONY",
+    "short": "PS1",
+    "cores": [
+      "pcsx_rearmed",
+      "mednafen_psx_hw"
+    ],
+    "extensions": [
+      "bin",
+      "cue",
+      "chd",
+      "pbp",
+      "iso",
+      "img",
+      "zip",
+      "exe"
+    ],
+    "kind": "console",
+    "bios": "optional",
+    "biosHint": "A 512 KB PS1 BIOS improves compatibility. Beetle PSX requires matching regional firmware.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/playstation-cutout.webp"
+  },
+  {
+    "id": "nes",
+    "name": "NES / Famicom",
+    "maker": "NINTENDO",
+    "short": "NES",
+    "cores": [
+      "fceumm",
+      "nestopia"
+    ],
+    "extensions": [
+      "nes",
+      "unf",
+      "unif",
+      "fds",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "optional",
+    "biosHint": "Famicom Disk System games need disksys.rom. Cartridge games need no BIOS.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/nes.webp"
+  },
+  {
+    "id": "snes",
+    "name": "Super Nintendo",
+    "maker": "NINTENDO",
+    "short": "SNES",
+    "cores": [
+      "snes9x",
+      "bsnes"
+    ],
+    "extensions": [
+      "sfc",
+      "smc",
+      "fig",
+      "swc",
+      "bs",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/snes.webp"
+  },
+  {
+    "id": "n64",
+    "name": "Nintendo 64",
+    "maker": "NINTENDO",
+    "short": "N64",
+    "cores": [
+      "mupen64plus_next",
+      "parallel_n64"
+    ],
+    "extensions": [
+      "z64",
+      "n64",
+      "v64",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/n64.webp"
+  },
+  {
+    "id": "gb",
+    "name": "Game Boy",
+    "maker": "NINTENDO",
+    "short": "GB",
+    "cores": [
+      "gambatte"
+    ],
+    "extensions": [
+      "gb",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/gb.webp"
+  },
+  {
+    "id": "gbc",
+    "name": "Game Boy Color",
+    "maker": "NINTENDO",
+    "short": "GBC",
+    "cores": [
+      "gambatte"
+    ],
+    "extensions": [
+      "gb",
+      "gbc",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/gbc.webp"
+  },
+  {
+    "id": "gba",
+    "name": "Game Boy Advance",
+    "maker": "NINTENDO",
+    "short": "GBA",
+    "cores": [
+      "mgba"
+    ],
+    "extensions": [
+      "gba",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "optional",
+    "biosHint": "Optional gba_bios.bin firmware.",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/gba.webp"
+  },
+  {
+    "id": "nds",
+    "name": "Nintendo DS",
+    "maker": "NINTENDO",
+    "short": "DS",
+    "cores": [
+      "melonds",
+      "desmume",
+      "desmume2015"
+    ],
+    "extensions": [
+      "nds",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "optional",
+    "biosHint": "Optional bios7.bin, bios9.bin and firmware.bin. Touchscreen input is available on the host.",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/nds.webp"
+  },
+  {
+    "id": "3ds",
+    "name": "Nintendo 3DS",
+    "maker": "NINTENDO",
+    "short": "3DS",
+    "cores": [
+      "azahar"
+    ],
+    "extensions": [
+      "3ds",
+      "cci",
+      "cxi",
+      "app",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "optional",
+    "biosHint": "Use decrypted game images. Some games need additional firmware. Requires WebGL 2 and a powerful desktop.",
+    "available": true,
+    "remotePort": 0,
+    "experimental": true,
+    "image": "/images/hardware/3ds.webp"
+  },
+  {
+    "id": "virtual-boy",
+    "name": "Virtual Boy",
+    "maker": "NINTENDO",
+    "short": "VB",
+    "cores": [
+      "beetle_vb"
+    ],
+    "extensions": [
+      "vb",
+      "vboy",
+      "bin",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/virtual-boy.webp"
+  },
+  {
+    "id": "psp",
+    "name": "PlayStation Portable",
+    "maker": "SONY",
+    "short": "PSP",
+    "cores": [
+      "ppsspp"
+    ],
+    "extensions": [
+      "iso",
+      "cso",
+      "pbp",
+      "elf",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "Requires WebGL 2 and a desktop browser. Remote play shares the same controller; wireless PSP multiplayer is not supported.",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/psp.webp"
+  },
+  {
+    "id": "mega-drive",
+    "name": "Mega Drive / Genesis",
+    "maker": "SEGA",
+    "short": "MD",
+    "cores": [
+      "genesis_plus_gx",
+      "picodrive",
+      "genesis_plus_gx_wide"
+    ],
+    "extensions": [
+      "md",
+      "gen",
+      "bin",
+      "smd",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/mega-drive.webp"
+  },
+  {
+    "id": "master-system",
+    "name": "Master System",
+    "maker": "SEGA",
+    "short": "SMS",
+    "cores": [
+      "smsplus",
+      "genesis_plus_gx",
+      "picodrive",
+      "genesis_plus_gx_wide"
+    ],
+    "extensions": [
+      "sms",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/master-system.webp"
+  },
+  {
+    "id": "game-gear",
+    "name": "Game Gear",
+    "maker": "SEGA",
+    "short": "GG",
+    "cores": [
+      "genesis_plus_gx",
+      "genesis_plus_gx_wide"
+    ],
+    "extensions": [
+      "gg",
+      "bin",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/game-gear.webp"
+  },
+  {
+    "id": "sega-cd",
+    "name": "Sega CD",
+    "maker": "SEGA",
+    "short": "CD",
+    "cores": [
+      "genesis_plus_gx",
+      "picodrive",
+      "genesis_plus_gx_wide"
+    ],
+    "extensions": [
+      "cue",
+      "bin",
+      "chd",
+      "iso",
+      "img",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add regional Sega CD firmware, named bios_CD_U.bin, bios_CD_E.bin or bios_CD_J.bin as appropriate.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/sega-cd.webp"
+  },
+  {
+    "id": "sega-32x",
+    "name": "Sega 32X",
+    "maker": "SEGA",
+    "short": "32X",
+    "cores": [
+      "picodrive"
+    ],
+    "extensions": [
+      "32x",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/sega-32x.webp"
+  },
+  {
+    "id": "saturn",
+    "name": "Sega Saturn",
+    "maker": "SEGA",
+    "short": "SATURN",
+    "cores": [
+      "yabause"
+    ],
+    "extensions": [
+      "cue",
+      "bin",
+      "chd",
+      "iso",
+      "img",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "optional",
+    "biosHint": "Add your Saturn BIOS for better compatibility. Large images and demanding games may run slowly.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/saturn.webp"
+  },
+  {
+    "id": "atari-2600",
+    "name": "Atari 2600",
+    "maker": "ATARI",
+    "short": "2600",
+    "cores": [
+      "stella2014"
+    ],
+    "extensions": [
+      "a26",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/atari-2600.webp"
+  },
+  {
+    "id": "atari-5200",
+    "name": "Atari 5200",
+    "maker": "ATARI",
+    "short": "5200",
+    "cores": [
+      "a5200"
+    ],
+    "extensions": [
+      "a52",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add the Atari 5200 BIOS named 5200.rom.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/atari-5200.webp"
+  },
+  {
+    "id": "atari-7800",
+    "name": "Atari 7800",
+    "maker": "ATARI",
+    "short": "7800",
+    "cores": [
+      "prosystem"
+    ],
+    "extensions": [
+      "a78",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "optional",
+    "biosHint": "Optional 7800 BIOS firmware.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/atari-7800.webp"
+  },
+  {
+    "id": "jaguar",
+    "name": "Atari Jaguar",
+    "maker": "ATARI",
+    "short": "JAGUAR",
+    "cores": [
+      "virtualjaguar"
+    ],
+    "extensions": [
+      "j64",
+      "jag",
+      "rom",
+      "abs",
+      "cof",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/jaguar.webp"
+  },
+  {
+    "id": "lynx",
+    "name": "Atari Lynx",
+    "maker": "ATARI",
+    "short": "LYNX",
+    "cores": [
+      "handy"
+    ],
+    "extensions": [
+      "lnx",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "required",
+    "biosHint": "Add lynxboot.img firmware.",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/lynx.webp"
+  },
+  {
+    "id": "coleco",
+    "name": "ColecoVision",
+    "maker": "COLECO",
+    "short": "COLECO",
+    "cores": [
+      "gearcoleco"
+    ],
+    "extensions": [
+      "col",
+      "rom",
+      "bin",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add the ColecoVision BIOS named colecovision.rom.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/coleco.webp"
+  },
+  {
+    "id": "intellivision",
+    "name": "Intellivision",
+    "maker": "MATTEL",
+    "short": "INTV",
+    "cores": [
+      "freeintv"
+    ],
+    "extensions": [
+      "int",
+      "bin",
+      "rom",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add exec.bin and grom.bin firmware.",
+    "available": true,
+    "remotePort": 1,
+    "experimental": true,
+    "image": "/images/hardware/intellivision.webp"
+  },
+  {
+    "id": "pc-engine",
+    "name": "PC Engine / TurboGrafx",
+    "maker": "NEC",
+    "short": "PCE",
+    "cores": [
+      "mednafen_pce"
+    ],
+    "extensions": [
+      "pce",
+      "sgx",
+      "cue",
+      "bin",
+      "chd",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "optional",
+    "biosHint": "Cartridges need no BIOS. CD games require syscard3.pce.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/pc-engine.webp"
+  },
+  {
+    "id": "pc-fx",
+    "name": "PC-FX",
+    "maker": "NEC",
+    "short": "PC-FX",
+    "cores": [
+      "mednafen_pcfx"
+    ],
+    "extensions": [
+      "cue",
+      "bin",
+      "chd",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add pcfx.rom firmware.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/pc-fx.webp"
+  },
+  {
+    "id": "neo-geo-pocket",
+    "name": "Neo Geo Pocket",
+    "maker": "SNK",
+    "short": "NGP",
+    "cores": [
+      "mednafen_ngp"
+    ],
+    "extensions": [
+      "ngp",
+      "ngc",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/neo-geo-pocket.webp"
+  },
+  {
+    "id": "wonderswan",
+    "name": "WonderSwan",
+    "maker": "BANDAI",
+    "short": "WS",
+    "cores": [
+      "mednafen_wswan"
+    ],
+    "extensions": [
+      "ws",
+      "wsc",
+      "zip"
+    ],
+    "kind": "handheld",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 0,
+    "image": "/images/hardware/wonderswan.webp"
+  },
+  {
+    "id": "3do",
+    "name": "3DO",
+    "maker": "PANASONIC",
+    "short": "3DO",
+    "cores": [
+      "opera"
+    ],
+    "extensions": [
+      "cue",
+      "bin",
+      "chd",
+      "iso",
+      "img",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add a compatible 3DO BIOS such as panafz1.bin.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/3do.webp"
+  },
+  {
+    "id": "arcade",
+    "name": "Arcade / FinalBurn",
+    "maker": "ARCADE",
+    "short": "ARCADE",
+    "cores": [
+      "fbneo",
+      "fbalpha2012_cps1",
+      "fbalpha2012_cps2"
+    ],
+    "extensions": [
+      "zip"
+    ],
+    "kind": "arcade",
+    "bios": "optional",
+    "biosHint": "Use an intact ZIP matching the selected core’s ROM set. Some boards require additional BIOS ZIPs.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/arcade.webp"
+  },
+  {
+    "id": "mame",
+    "name": "Arcade / MAME",
+    "maker": "ARCADE",
+    "short": "MAME",
+    "cores": [
+      "mame2003_plus",
+      "mame2003"
+    ],
+    "extensions": [
+      "zip"
+    ],
+    "kind": "arcade",
+    "bios": "optional",
+    "biosHint": "Use a ROM set matching MAME 2003 or MAME 2003 Plus. Additional BIOS archives depend on the board.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/mame.webp"
+  },
+  {
+    "id": "cdi",
+    "name": "Philips CD-i",
+    "maker": "PHILIPS",
+    "short": "CD-i",
+    "cores": [
+      "same_cdi"
+    ],
+    "extensions": [
+      "chd",
+      "cue",
+      "bin",
+      "iso",
+      "zip"
+    ],
+    "kind": "console",
+    "bios": "required",
+    "biosHint": "Add the CD-i firmware archive required by SAME CDi. Keyboard and mouse input remain on the host.",
+    "available": true,
+    "remotePort": 1,
+    "experimental": true,
+    "image": "/images/hardware/cdi.webp"
+  },
+  {
+    "id": "amiga",
+    "name": "Commodore Amiga",
+    "maker": "COMMODORE",
+    "short": "AMIGA",
+    "cores": [
+      "puae"
+    ],
+    "extensions": [
+      "adf",
+      "adz",
+      "dms",
+      "ipf",
+      "hdf",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "required",
+    "biosHint": "Add the Kickstart firmware required by your Amiga model. Keep its original core-compatible filename.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/amiga.webp"
+  },
+  {
+    "id": "c64",
+    "name": "Commodore 64",
+    "maker": "COMMODORE",
+    "short": "C64",
+    "cores": [
+      "vice_x64sc"
+    ],
+    "extensions": [
+      "d64",
+      "d71",
+      "d81",
+      "t64",
+      "tap",
+      "prg",
+      "crt",
+      "p00",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/c64.webp"
+  },
+  {
+    "id": "c128",
+    "name": "Commodore 128",
+    "maker": "COMMODORE",
+    "short": "C128",
+    "cores": [
+      "vice_x128"
+    ],
+    "extensions": [
+      "d64",
+      "d71",
+      "d81",
+      "t64",
+      "tap",
+      "prg",
+      "crt",
+      "p00",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/c128.webp"
+  },
+  {
+    "id": "pet",
+    "name": "Commodore PET",
+    "maker": "COMMODORE",
+    "short": "PET",
+    "cores": [
+      "vice_xpet"
+    ],
+    "extensions": [
+      "tap",
+      "prg",
+      "p00",
+      "d64",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/pet.webp"
+  },
+  {
+    "id": "plus4",
+    "name": "Commodore Plus/4",
+    "maker": "COMMODORE",
+    "short": "PLUS/4",
+    "cores": [
+      "vice_xplus4"
+    ],
+    "extensions": [
+      "d64",
+      "d71",
+      "d81",
+      "t64",
+      "tap",
+      "prg",
+      "crt",
+      "p00",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/plus4.webp"
+  },
+  {
+    "id": "vic20",
+    "name": "Commodore VIC-20",
+    "maker": "COMMODORE",
+    "short": "VIC-20",
+    "cores": [
+      "vice_xvic"
+    ],
+    "extensions": [
+      "d64",
+      "d71",
+      "d81",
+      "t64",
+      "tap",
+      "prg",
+      "crt",
+      "p00",
+      "zip"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/vic20.webp"
+  },
+  {
+    "id": "dos",
+    "name": "DOS",
+    "maker": "PC",
+    "short": "DOS",
+    "cores": [
+      "dosbox_pure"
+    ],
+    "extensions": [
+      "zip",
+      "dosz",
+      "exe",
+      "com",
+      "iso",
+      "img"
+    ],
+    "kind": "computer",
+    "bios": "none",
+    "biosHint": "Load a game ZIP or executable. Keyboard and mouse controls are available on the host; the remote guest sends gamepad input.",
+    "available": true,
+    "remotePort": 1,
+    "image": "/images/hardware/dos.webp"
+  }
+]

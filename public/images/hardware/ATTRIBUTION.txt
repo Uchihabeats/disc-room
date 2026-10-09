@@ -1,0 +1,64 @@
+Disc Room hardware image credits
+
+Hardware PNGs sourced from fabricecaruso/es-theme-carbon:
+https://github.com/fabricecaruso/es-theme-carbon
+Pinned commit: b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a
+
+Carbon theme by Rookervik, based on simple by Nils Bonenberger.
+Per-image photographers/creators are not specified in the source repository.
+
+Source license: Creative Commons Attribution-NonCommercial-ShareAlike.
+The repository readme heading specifies 2.0, while its embedded legal text
+specifies 4.0 International. Preserve the supplied readme/license and observe
+the Attribution, NonCommercial and ShareAlike conditions.
+
+Source license/readme:
+https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/readme.txt
+CC BY-NC-SA 2.0: https://creativecommons.org/licenses/by-nc-sa/2.0/
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Collection changes: PNGs converted to WebP with compression for the website.
+Hardware content and transparent backgrounds preserved.
+Files are published as /images/hardware/{system-id}.webp.
+Logos and trademarks remain owned by their respective owners; trademark
+rights are not granted by the source image license.
+
+Individual source file pages:
+nes: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/nes.png
+snes: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/snes.png
+n64: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/n64.png
+gb: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/gb.png
+gbc: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/gbc.png
+gba: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/gba.png
+nds: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/nds.png
+3ds: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/3ds.png
+virtual-boy: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/virtualboy.png
+psp: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/psp.png
+mega-drive: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/megadrive.png
+master-system: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/mastersystem.png
+game-gear: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/gamegear.png
+sega-cd: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/segacd.png
+sega-32x: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/sega32x.png
+saturn: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/saturn.png
+atari-2600: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/atari2600.png
+atari-5200: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/atari5200.png
+atari-7800: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/atari7800.png
+jaguar: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/atarijaguar.png
+lynx: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/atarilynx.png
+coleco: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/colecovision.png
+intellivision: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/intellivision.png
+pc-engine: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/pcengine.png
+pc-fx: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/pcfx.png
+neo-geo-pocket: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/ngp.png
+wonderswan: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/wonderswan.png
+3do: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/3do.png
+arcade: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/arcade.png
+mame: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/mame.png
+cdi: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/cdi.png
+amiga: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/amiga.png
+c64: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/c64.png
+c128: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/c128.png
+pet: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/pet.png
+plus4: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/cplus4.png
+vic20: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/vic20.png
+dos: https://github.com/fabricecaruso/es-theme-carbon/blob/b921e1734d88d6bc7b9e8cb97dd8f8b91ba2058a/art/consoles/pc.png

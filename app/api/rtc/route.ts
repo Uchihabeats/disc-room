@@ -1,0 +1,3 @@
+export const runtime='nodejs';
+import { authorize,response } from '../rooms/service';
+export async function POST(request:Request){try{const {id,token}=await request.json() as {id:string;token:string};await authorize(id,token);const iceServers:RTCIceServer[]=[{urls:['stun:stun.cloudflare.com:3478','stun:stun.l.google.com:19302']}];if(process.env.TURN_URL&&process.env.TURN_USERNAME&&process.env.TURN_CREDENTIAL)iceServers.push({urls:process.env.TURN_URL.split(','),username:process.env.TURN_USERNAME,credential:process.env.TURN_CREDENTIAL});return response({iceServers,relay:iceServers.length>1});}catch(e){return response({error:e instanceof Error?e.message:'Connection service unavailable.'},400);}}
