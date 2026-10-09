@@ -1,6 +1,8 @@
-import { Gamepad2, Disc3, Users, Link2 } from "lucide-react";
+import { Gamepad2, Disc3, Users, Link2, Play } from "lucide-react";
 import { SiteHeader, SiteFooter } from "./site-shell";
 import { LegacyInvite } from "./legacy-invite";
+import { LandingFilm } from "./landing-film";
+import Link from "next/link";
 
 export default function HomePage(){
  return <main className="chassis public-page">
@@ -14,8 +16,9 @@ export default function HomePage(){
     <div className="landing-copy">
      <span className="empty-kicker">OLD GAMES / NEW HANGOUTS</span>
      <p>Your favourite games. Your favourite people.<br className="desktop-break"/> One console, even when you’re miles apart.</p>
-     <div className="landing-actions"><a href="/emulators" className="primary-button"><Gamepad2 size={20} aria-hidden="true"/>Choose a console</a><a href="/play/ps1#the-room" className="outline-button"><Link2 size={18} aria-hidden="true"/>Got an invite?</a></div>
+     <div className="landing-actions"><Link href="/emulators" className="primary-button"><Gamepad2 size={20} aria-hidden="true"/>Choose a console</Link><Link href="/play/ps1#the-room" className="outline-button"><Link2 size={18} aria-hidden="true"/>Got an invite?</Link></div>
      <span className="landing-note">39 SYSTEMS. BRING YOUR FAVOURITE.</span>
+     <a href="#the-film" className="landing-film-link"><Play size={14} aria-hidden="true"/>Watch the film<span>00:38</span></a>
     </div>
     <figure className="couch-poster hero-artwork">
      <div className="poster-cap"><span>THE SAME GAME /</span><span>02 PLACES</span></div>
@@ -25,6 +28,7 @@ export default function HomePage(){
     </figure>
    </div>
   </section>
+  <LandingFilm/>
   <section className="how-section" id="how-it-works" aria-labelledby="how-title">
    <div className="how-heading"><span className="eyebrow">THE SETUP /</span><h2 id="how-title">THREE STEPS.<br/>THEN IT’S YOUR TURN.</h2></div>
    <ol className="how-steps">
@@ -33,7 +37,7 @@ export default function HomePage(){
     <li><span className="step-number">03<Users size={22} aria-hidden="true"/></span><div><h3>Save a seat.</h3><p>Create a room, send your friend the invite and let them join your game. The host keeps the game open.</p></div></li>
    </ol>
   </section>
-  <div className="landing-last"><p>THE COUCH IS<br/>WHEREVER YOU ARE.</p><a className="primary-button" href="/emulators"><Gamepad2 size={19} aria-hidden="true"/>Let’s play</a></div>
+  <div className="landing-last"><p>THE COUCH IS<br/>WHEREVER YOU ARE.</p><Link className="primary-button" href="/emulators"><Gamepad2 size={19} aria-hidden="true"/>Let’s play</Link></div>
   <SiteFooter/>
  </main>;
 }
