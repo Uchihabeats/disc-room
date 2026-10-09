@@ -317,3 +317,13 @@ a{color:inherit;text-decoration:none}
 .transport .volume{margin-left:auto}
 .room-button{justify-content:center}
 .room-button span{line-height:1.4}
+.connection-panel{border-top:1px solid var(--ink);padding-top:18px;margin-top:18px}
+.connection-panel select{width:100%;min-height:44px;border:1px solid var(--ink);background:var(--cream);color:var(--ink);font:inherit;font-size:12px;padding:9px;margin-top:8px}
+.connection-note{font-size:11px;line-height:1.5;margin:9px 0;color:var(--ink)}
+.control-receipt{font-size:12px;line-height:1.5;border-left:3px solid var(--ink);padding-left:9px;margin:13px 0}
+.control-warning{border-left-color:var(--pink)}
+.connection-details summary{cursor:pointer;font-size:12px;font-weight:700;min-height:32px;padding-top:7px}
+.connection-details dl{font-size:11px;margin:8px 0 14px}
+.connection-details dl>div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid #1112}
+.connection-details dd{margin:0;font-variant-numeric:tabular-nums}
+.connection-panel select:focus-visible,.connection-details summary:focus-visible,.remote-video:focus-visible{outline:2px solid var(--pink);outline-offset:3px}

@@ -8,6 +8,7 @@ import { Toaster, toast } from "sonner";
 import {SiteHeader,SiteFooter} from './site-shell';
 import {engineDocument} from './engine-document';
 import { useDiscRoom } from "./use-disc-room";
+import {ConnectionPanel} from './connection-panel';
 
 import {getSystem,requiresBios,experimentalCores,remoteHint} from './systems';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from '@/components/ui/select';
@@ -28,7 +29,7 @@ export default function Page({systemId='ps1'}:{systemId?:string}) {
     <div className={`screen ${app.playing?'is-playing':''} ${drag?'dragging':''}`} ref={app.screenRef} onDragOver={e=>{e.preventDefault();setDrag(true)}} onDragLeave={()=>setDrag(false)} onDrop={e=>{e.preventDefault();setDrag(false);app.selectFiles(Array.from(e.dataTransfer.files))}}>
      {app.playing&&<div className="screen-caption"><span>VIDEO / 01</span><span>{app.guest?'REMOTE SIGNAL':'LOCAL SIGNAL'}</span></div>}
      <iframe ref={app.engineRef} srcDoc={engineDocument} title={system.name+' emulator'} className={app.playing&&!app.guest?'engine active':'engine'} allow="autoplay; fullscreen; gamepad" onLoad={app.engineLoaded}/>
-     <video ref={app.videoRef} className={app.guest&&app.connected?'remote-video active':'remote-video'} playsInline autoPlay onClick={()=>app.videoRef.current?.play()}/>
+     <video ref={app.videoRef} className={app.guest&&app.connected?'remote-video active':'remote-video'} playsInline autoPlay tabIndex={app.guest?0:-1} aria-label="Remote game. Click to enable keyboard controls." onClick={app.focusGame}/>
      {(!app.playing||(app.guest&&!app.connected))&&<div className="empty-screen">
       <span className="session-sticker" aria-hidden="true">{system.short}<br/>{app.guest?'PLAYER':'LOCAL'}<br/>{app.guest?'TWO':'+ REMOTE'}</span>
       {!app.guest&&system.image&&<div className="idle-console-art" aria-hidden="true"><img src={system.image} alt="" width={1536} height={1024}/></div>}
@@ -63,6 +64,7 @@ export default function Page({systemId='ps1'}:{systemId?:string}) {
     {!app.guest&&<div className="room-actions"><label className="field-label" htmlFor="player-name">YOUR NAME</label><input id="player-name" maxLength={24} value={name} onChange={e=>setName(e.target.value)}/>{!app.room?<button className="room-button" disabled={app.roomBusy} onClick={()=>app.createRoom(name)}>{app.roomBusy?<Loader2 size={17} className="spin"/>:<Gamepad2 size={18}/>}<span>Create a room</span></button>:<><div className="invite-code"><span>ROOM /</span><strong>{app.room.id.slice(0,8).toUpperCase()}</strong></div><button className="room-button" onClick={app.copyInvite}><Copy size={17}/><span>Copy invite link</span></button><button className="text-button close-room" onClick={app.closeRoom}><X size={14}/> Close room</button></>}</div>}
     {app.pending&&<div className="join-request"><strong>{app.pending.name} wants to join.</strong><div><button className="outline-button" onClick={()=>app.approve(true)}>Let them in</button><button className="text-button" onClick={()=>app.approve(false)}>Decline</button></div></div>}
     <div className="room-status" role="status"><span className="status-rule"/><span>{app.status}</span>{app.ping!==null&&<small>{app.ping} ms round trip</small>}</div>
+    {app.room&&<ConnectionPanel {...app}/>}
     {!app.room&&!app.guest&&<div className="join-box"><label className="field-label" htmlFor="invite">ON THE GUEST LIST?</label><input id="invite" placeholder="Paste your friend’s link" value={join} onChange={e=>setJoin(e.target.value)}/><button className="text-button" disabled={!join.trim()} onClick={()=>app.joinInvite(join,name)}><Link2 size={16} aria-hidden="true"/>Join their room</button></div>}
     {app.guest&&<button className="outline-button" onClick={app.closeRoom}>Leave room</button>}
     <div className="room-footnote"><span className="tiny-square"/><p>The host keeps the game open.<br/>Your files stay on your device.</p></div>
