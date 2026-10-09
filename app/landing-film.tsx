@@ -10,17 +10,24 @@ export function LandingFilm() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [status, setStatus] = useState<"ready" | "loading" | "playing" | "paused" | "ended" | "error">("ready");
   const [buffering, setBuffering] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.volume = 0.65;
+    let autoplayAttempted = false;
 
     const pauseWhenHidden = () => {
       if (document.hidden && document.pictureInPictureElement !== video) video.pause();
     };
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting && document.pictureInPictureElement !== video) video.pause();
+      if (entry.isIntersecting && !document.hidden && !autoplayAttempted) {
+        autoplayAttempted = true;
+        // Keep the play button available if the browser declines autoplay.
+        void video.play().catch(() => {});
+      }
     });
     observer.observe(video);
     document.addEventListener("visibilitychange", pauseWhenHidden);
@@ -65,6 +72,7 @@ export function LandingFilm() {
             height={1080}
             controls
             playsInline
+            muted={muted}
             preload="none"
             poster="/media/disc-room-film-poster-v2.webp"
             tabIndex={0}
@@ -72,6 +80,7 @@ export function LandingFilm() {
             aria-describedby="film-caption"
             onPlay={() => setStatus("playing")}
             onPlaying={() => setBuffering(false)}
+            onVolumeChange={() => setMuted(videoRef.current?.muted ?? true)}
             onWaiting={() => setBuffering(true)}
             onPause={() => setStatus((current) => current === "playing" ? "paused" : current)}
             onEnded={() => { setStatus("ended"); setBuffering(false); }}
@@ -105,7 +114,7 @@ export function LandingFilm() {
         </div>
         <figcaption id="film-caption" className="film-caption">
           <span><span className="film-caption-dot" aria-hidden="true" />YOUR NEXT HANGOUT / 00:38</span>
-          <span aria-live="polite">{status === "playing" ? "NOW PLAYING" : status === "paused" ? "PAUSED" : status === "ended" ? "ONE MORE ROUND?" : "PRESS PLAY. SOUND ON."}</span>
+          <span aria-live="polite">{status === "playing" ? (muted ? "PLAYING MUTED / UNMUTE FOR SOUND" : "NOW PLAYING") : status === "paused" ? "PAUSED" : status === "ended" ? "ONE MORE ROUND?" : "PRESS PLAY TO WATCH"}</span>
         </figcaption>
       </figure>
 
