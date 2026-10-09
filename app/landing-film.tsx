@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Play, RotateCcw } from "lucide-react";
 import "./landing-film.css";
 
 const FILM_URL = "/media/disc-room-film-v2.mp4";
@@ -25,7 +24,7 @@ export function LandingFilm() {
       if (!entry.isIntersecting && document.pictureInPictureElement !== video) video.pause();
       if (entry.isIntersecting && !document.hidden && !autoplayAttempted) {
         autoplayAttempted = true;
-        // Keep the play button available if the browser declines autoplay.
+        // Native controls remain available if the browser declines autoplay.
         void video.play().catch(() => {});
       }
     });
@@ -50,8 +49,6 @@ export function LandingFilm() {
       setStatus("error");
     }
   }
-
-  const showPlayButton = status === "ready" || status === "ended";
 
   return (
     <section className="landing-film" id="the-film" aria-labelledby="film-title">
@@ -90,18 +87,6 @@ export function LandingFilm() {
             <track kind="captions" src="/media/disc-room-film-v2.vtt" srcLang="en" label="English" />
             Your browser cannot play this video. <a href={FILM_URL}>Open the film.</a>
           </video>
-
-          {showPlayButton ? (
-            <button
-              type="button"
-              className="film-play"
-              onClick={startFilm}
-              aria-label={status === "ended" ? "Replay Disc Room film, 38 seconds" : "Play Disc Room film, 38 seconds"}
-            >
-              <span className="film-play-icon">{status === "ended" ? <RotateCcw size={25} aria-hidden="true" /> : <Play size={25} fill="currentColor" aria-hidden="true" />}</span>
-              <span>{status === "ended" ? "Watch again" : "Watch the film"}<small>00:38 / DISC ROOM</small></span>
-            </button>
-          ) : null}
 
           {(status === "loading" || (buffering && status === "playing")) ? <span className="film-loading" role="status">Getting the film ready…</span> : null}
           {status === "error" ? (

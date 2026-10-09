@@ -1,4 +1,4 @@
-import { Gamepad2, Disc3, Users, Link2, Play } from "lucide-react";
+import { Gamepad2, Disc3, Users, Link2 } from "lucide-react";
 import { SiteHeader, SiteFooter } from "./site-shell";
 import { LegacyInvite } from "./legacy-invite";
 import { LandingFilm } from "./landing-film";
@@ -18,7 +18,6 @@ export default function HomePage(){
      <p>Your favourite games. Your favourite people.<br className="desktop-break"/> One console, even when you’re miles apart.</p>
      <div className="landing-actions"><Link href="/emulators" className="primary-button"><Gamepad2 size={20} aria-hidden="true"/>Choose a console</Link><Link href="/play/ps1#the-room" className="outline-button"><Link2 size={18} aria-hidden="true"/>Got an invite?</Link></div>
      <span className="landing-note">39 SYSTEMS. BRING YOUR FAVOURITE.</span>
-     <a href="#the-film" className="landing-film-link"><Play size={14} aria-hidden="true"/>Watch the film<span>00:38</span></a>
     </div>
     <figure className="couch-poster hero-artwork">
      <div className="poster-cap"><span>THE SAME GAME /</span><span>02 PLACES</span></div>
