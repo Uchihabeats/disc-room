@@ -14,11 +14,6 @@
 .film-error{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;background:#191a18f5;color:var(--cream);text-align:center}
 .film-error p{font-size:18px;font-weight:700;margin:0}
 .film-error>a{font-size:13px;text-decoration:underline;text-underline-offset:4px}
-.film-transcript{margin-top:27px;font-size:12px;color:#bdb6a7;max-width:800px}
-.film-transcript summary{width:fit-content;cursor:pointer;min-height:40px;padding:12px 0;text-underline-offset:5px}
-.film-transcript summary:hover{text-decoration:underline;color:var(--cream)}
-.film-transcript summary:focus-visible{outline:3px solid var(--pink);outline-offset:4px}
-.film-transcript p{line-height:1.7;font-size:14px;margin:14px 0}
 @media(max-width:760px){
  .landing-film{padding:39px 0 32px;scroll-margin-top:20px}
  .film-heading{flex-direction:column;align-items:flex-start;gap:19px;margin-bottom:25px}
@@ -27,5 +22,4 @@
  .film-card{padding:6px;margin-right:7px;box-shadow:7px 7px 0 var(--yellow)}
  .film-caption{font-size:8px;letter-spacing:.45px;padding:13px 6px 7px;gap:9px}
  .film-loading{bottom:45px;font-size:11px;padding:7px 10px}
- .film-transcript{margin-top:19px}
 }

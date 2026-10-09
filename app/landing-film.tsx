@@ -103,16 +103,6 @@ export function LandingFilm() {
         </figcaption>
       </figure>
 
-      <details className="film-transcript">
-        <summary>Read the film transcript</summary>
-        <div>
-          <p>Player two? Still there? Distance doesn’t get a turn.</p>
-          <p>Disc Room. One console, even miles apart. Pick your console from 39 systems. Bring the game: load it from your device. Your files stay local.</p>
-          <p>Real game, in your browser. The film shows 8-Bit Table Tennis, a homebrew NES game by Michael Billington, running locally in Disc Room.</p>
-          <p>Save a seat. Create a room. Invite your friend. Choose a game with local multiplayer. The couch is wherever you are.</p>
-          <p>Play. Together. Choose a console. Bring your own ROM.</p>
-        </div>
-      </details>
     </section>
   );
 }
