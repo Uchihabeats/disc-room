@@ -16,6 +16,17 @@ export function useDiscRoom(system:SystemConfig){
  const screenRef=useRef<HTMLDivElement>(null),engineRef=useRef<HTMLIFrameElement>(null),videoRef=useRef<HTMLVideoElement>(null),roomRef=useRef<Room|null>(null),pc=useRef<RTCPeerConnection|null>(null),channel=useRef<RTCDataChannel|null>(null),stream=useRef<MediaStream|null>(null),cursor=useRef(0),approved=useRef(false),started=useRef(false),boot=useRef<any>(null),iceQueue=useRef<RTCIceCandidateInit[]>([]),serial=useRef(Promise.resolve()),lastSeq=useRef(-1),offerBusy=useRef(false),alive=useRef(true),inputEnabled=useRef(false),keys=useRef(new Set<string>()),joinBusy=useRef(false),reconnectCount=useRef(0),reconnectTimer=useRef<ReturnType<typeof setTimeout>|null>(null),healthTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
  const engine=()=>((engineRef.current?.contentWindow as any)?.discEngine as Engine|undefined);
  const fail=(e:unknown)=>{const message=e instanceof Error?e.message:String(e);setError(message);setStatus(message)};
+ function playRemoteVideo(enableSound=false){
+  const video=videoRef.current;if(!video?.srcObject)return;
+  if(enableSound)video.muted=false;
+  void video.play().then(()=>{if(roomRef.current?.role==='guest'&&channel.current?.readyState==='open'&&!video.muted)setStatus('Player two connected')}).catch((e:unknown)=>{
+   if(videoRef.current!==video||roomRef.current?.role!=='guest'||!video.srcObject)return;
+   if(e instanceof DOMException&&e.name==='NotAllowedError'&&!video.muted){
+    video.muted=true;void video.play().catch(()=>{});
+    setStatus('Controls ready. Click the game or press a game key for sound.');
+   }
+  });
+ }
  async function api(body:any){const r=await fetch('/api/rooms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data:any=await r.json();if(!r.ok)throw new Error(data.error||'The room service could not respond.');return data;}
  function remember(r:Room|null){if(roomRef.current?.token!==r?.token){relayRef.current=false;setRelayOnly(false);relayAvailableRef.current=false;setRelayAvailable(false);setRelayWarning('');reconnectCount.current=0;}roomRef.current=r;setRoom(r);cursor.current=0;approved.current=false;try{if(r)sessionStorage.setItem('disc-room-session-'+system.id,JSON.stringify(r));else sessionStorage.removeItem('disc-room-session-'+system.id)}catch{}}
  function resetPeer(){if(reconnectTimer.current)clearTimeout(reconnectTimer.current);if(healthTimer.current)clearTimeout(healthTimer.current);if(statsTimer.current)clearInterval(statsTimer.current);statsTimer.current=null;statsCounter.current=undefined;inputReceipt.current={last:0,active:0,ack:0};setNetwork(null);setInputStatus('waiting');inputEnabled.current=false;keys.current.clear();channel.current?.close();channel.current=null;const old=pc.current;pc.current=null;if(old){old.onconnectionstatechange=null;old.close()}if(stream.current){for(const t of stream.current.getTracks())t.stop();stream.current=null}engine()?.release();setConnected(false);setPing(null);iceQueue.current=[];lastSeq.current=-1;}
@@ -50,7 +61,7 @@ export function useDiscRoom(system:SystemConfig){
  }
  function setupChannel(c:RTCDataChannel){
   channel.current=c;
-  c.onopen=()=>{if(channel.current!==c)return;setConnected(true);setStatus('Player two connected');reconnectCount.current=0;inputReceipt.current.last=performance.now();if(roomRef.current?.role==='guest'){setPlaying(true);inputEnabled.current=true;videoRef.current?.play().catch(()=>{})}else void applyStreamLimits();};
+  c.onopen=()=>{if(channel.current!==c)return;setConnected(true);setStatus('Player two connected');reconnectCount.current=0;inputReceipt.current.last=performance.now();if(roomRef.current?.role==='guest'){setPlaying(true);inputEnabled.current=true;if(document.activeElement===document.body)videoRef.current?.focus({preventScroll:true});playRemoteVideo(true)}else void applyStreamLimits();};
   c.onclose=()=>{if(channel.current!==c)return;inputEnabled.current=false;engine()?.release();setConnected(false);setInputStatus('stalled');setStatus('Connection lost. Trying to reconnect…')};
   c.onmessage=e=>{try{
    if(typeof e.data!=='string'||e.data.length>4096)return;
@@ -84,7 +95,7 @@ export function useDiscRoom(system:SystemConfig){
   },2000);
   peer.onicecandidate=e=>{if(e.candidate)sendSignal('ice',e.candidate.toJSON()).catch(fail)};
   peer.ondatachannel=e=>setupChannel(e.channel);
-  peer.ontrack=e=>{if(videoRef.current){videoRef.current.srcObject=e.streams[0];videoRef.current.volume=volume/100;videoRef.current.play().catch(()=>setStatus('Click the game to enable sound.'))}};
+  peer.ontrack=e=>{if(videoRef.current){videoRef.current.srcObject=e.streams[0];videoRef.current.volume=volume/100;playRemoteVideo(true)}};
   peer.onconnectionstatechange=()=>{if(pc.current!==peer)return;
    if(peer.connectionState==='connected'){if(healthTimer.current)clearTimeout(healthTimer.current);void applyStreamLimits();}
    if(['failed','disconnected'].includes(peer.connectionState)){engine()?.release();setConnected(false);setStatus('Connection lost. Trying to reconnect…');if(reconnectTimer.current)clearTimeout(reconnectTimer.current);reconnectTimer.current=setTimeout(()=>{
@@ -121,7 +132,7 @@ export function useDiscRoom(system:SystemConfig){
  function pause(){const next=!paused;engine()?.pause(next);setPaused(next)}
  function restart(){engine()?.restart();setPaused(false);engine()?.pause(false)}
  function fullscreen(){screenRef.current?.requestFullscreen().catch(fail)}
- function focusGame(){if(guest){inputEnabled.current=true;videoRef.current?.play().catch(fail);videoRef.current?.focus();setStatus('Player two connected')}else engine()?.focus()}
+ function focusGame(){if(roomRef.current?.role==='guest'){videoRef.current?.focus({preventScroll:true});playRemoteVideo(true)}else engine()?.focus()}
  function exportState(){try{const bytes=engine()!.exportState(),url=URL.createObjectURL(new Blob([bytes as BlobPart]));const a=document.createElement('a');a.href=url;a.download=(files[0]?.name||system.id)+'.state';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast.success('Save state exported')}catch(e){fail(e)}}
  async function importState(file:File){try{if(file.size>32*1048576)throw new Error('This save state is too large.');engine()?.importState(await file.arrayBuffer());toast.success('Save state imported')}catch(e){fail(e)}}
  useEffect(()=>{engine()?.volume(volume);if(videoRef.current)videoRef.current.volume=volume/100},[volume]);
@@ -151,7 +162,8 @@ export function useDiscRoom(system:SystemConfig){
    for(const s of data.signals){serial.current=serial.current.then(()=>{if(!cancelled&&roomRef.current?.token===r.token)return processSignal(s)}).catch(fail);cursor.current=Math.max(cursor.current,s.seq)}
   }}catch(e){if(!cancelled&&r&&roomRef.current?.token===r.token){remember(null);resetPeer();setPending(null);fail(e)}}finally{if(!cancelled)setTimeout(poll,1500)}
  };void initialize().then(()=>{if(!cancelled)void poll()}).catch(fail);
- let seq=0,frame=0,lastSend=0,lastPing=0;const input=(e:KeyboardEvent)=>{if(roomRef.current?.role!=='guest'||!inputEnabled.current||!connectedRef())return;const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[role=dialog]'))return;if(e.code in keyMap){e.preventDefault();if(e.repeat)return;if(e.type==='keydown')keys.current.add(e.code);else keys.current.delete(e.code);sendControls();}};
+ let seq=0,frame=0,lastSend=0,lastPing=0;const input=(e:KeyboardEvent)=>{if(roomRef.current?.role!=='guest'||!inputEnabled.current||!connectedRef())return;const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[role=dialog]'))return;if(e.code in keyMap){e.preventDefault();if(e.repeat)return;if(e.type==='keydown'){unlockSound();keys.current.add(e.code)}else keys.current.delete(e.code);sendControls();}};
+ function unlockSound(){if(roomRef.current?.role==='guest'&&connectedRef()&&(videoRef.current?.muted||videoRef.current?.paused))playRemoteVideo(true)}
  function connectedRef(){return channel.current?.readyState==='open'}
  const clear=()=>{keys.current.clear();if(channel.current?.readyState==='open'&&roomRef.current?.role==='guest')channel.current.send(JSON.stringify({type:'input',seq:seq++,values:Array(24).fill(0)}));engine()?.release()};
  function sendControls(){
@@ -167,9 +179,9 @@ export function useDiscRoom(system:SystemConfig){
   }
   c.send(JSON.stringify({type:'input',seq:seq++,values}));lastSend=performance.now();
  }
- const tick=(at:number)=>{const c=channel.current;if(c?.readyState==='open'){if(at-lastPing>2000){c.send(JSON.stringify({type:'ping',at:performance.now()}));lastPing=at;}if(at-lastSend>33)sendControls();}frame=requestAnimationFrame(tick);};frame=requestAnimationFrame(tick);window.addEventListener('keydown',input);window.addEventListener('keyup',input);window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
+ const tick=(at:number)=>{const c=channel.current;if(c?.readyState==='open'){if(at-lastPing>2000){c.send(JSON.stringify({type:'ping',at:performance.now()}));lastPing=at;}if(at-lastSend>33)sendControls();}frame=requestAnimationFrame(tick);};frame=requestAnimationFrame(tick);window.addEventListener('keydown',input);window.addEventListener('keyup',input);window.addEventListener('pointerdown',unlockSound);window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
  const context=(document as any).modelContext,lifecycle=new AbortController();if(context?.registerTool){try{for(const tool of [{name:'get_console_status',description:'Read the selected game and room connection status.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({room:roomRef.current?.id||null,role:roomRef.current?.role||'local',gameRunning:started.current,connected:connectedRef()})},{name:'set_game_volume',description:'Set the local game audio volume from 0 to 100.',inputSchema:{type:'object',properties:{volume:{type:'integer',minimum:0,maximum:100}},required:['volume'],additionalProperties:false},execute:(input:any)=>{if(!Number.isInteger(input?.volume)||input.volume<0||input.volume>100)throw new Error('Volume must be an integer from 0 to 100.');setVolume(input.volume);return {volume:input.volume}}}])Promise.resolve(context.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{})}catch{}}
- return()=>{cancelled=true;alive.current=false;lifecycle.abort();cancelAnimationFrame(frame);window.removeEventListener('message',onMessage);window.removeEventListener('gamepadconnected',pad);window.removeEventListener('gamepaddisconnected',pad);window.removeEventListener('keydown',input);window.removeEventListener('keyup',input);window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);resetPeer()};
+ return()=>{cancelled=true;alive.current=false;lifecycle.abort();cancelAnimationFrame(frame);window.removeEventListener('message',onMessage);window.removeEventListener('gamepadconnected',pad);window.removeEventListener('gamepaddisconnected',pad);window.removeEventListener('keydown',input);window.removeEventListener('keyup',input);window.removeEventListener('pointerdown',unlockSound);window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);resetPeer()};
  },[]);
  return {quality,changeQuality,network,inputStatus,relayAvailable,relayWarning,relayOnly,streamWarning,tryRelay,canSave,core,setCore,files,bios,volume,setVolume,playing,busy,guest,paused,connected,error,controller,room,roomBusy,friendName,pending,status,ping,screenRef,engineRef,videoRef,selectFiles,selectBios,start,engineLoaded,pause,restart,fullscreen,focusGame,createRoom,joinInvite,closeRoom,approve,copyInvite,exportState,importState};
 }
