@@ -9,7 +9,7 @@ export default function HomePage(){
   <LegacyInvite/>
   <SiteHeader/>
   <section className="landing-hero" aria-labelledby="landing-title">
-   <div className="landing-topline"><span>THE BROWSER COUCH / EST. RIGHT NOW</span><span>BRING YOUR OWN ROM</span></div>
+   <div className="landing-topline"><span>THE BROWSER COUCH</span><span>BRING YOUR OWN ROM</span></div>
    <h1 className="landing-title" id="landing-title">PLAY.<br/>TOGETHER.</h1>
    <span className="landing-sticker" aria-hidden="true">PLAYER<br/>TWO<br/>WANTED</span>
    <div className="landing-bottom">
